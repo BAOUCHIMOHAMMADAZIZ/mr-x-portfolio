@@ -1,0 +1,27 @@
+{
+  "build": {
+    "env": {
+      "DATABASE_URL": "@database_url",
+      "RESEND_API_KEY": "@resend_api_key",
+      "OWNER_EMAIL": "@owner_email"
+    }
+  },
+  "env": {
+    "DATABASE_URL": {
+      "description": "PostgreSQL connection string"
+    },
+    "RESEND_API_KEY": {
+      "description": "Resend API key for email delivery"
+    },
+    "OWNER_EMAIL": {
+      "description": "Email address to receive contact form submissions"
+    },
+    "UPSTASH_REDIS_REST_URL": {
+      "description": "Optional: Upstash Redis URL for rate limiting"
+    },
+    "UPSTASH_REDIS_REST_TOKEN": {
+      "description": "Optional: Upstash Redis token for rate limiting"
+    }
+  },
+  "crons": []
+}

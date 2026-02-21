@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  email     String
+  phone     String?  // optional phone number
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+  
+  // Spam prevention fields
+  ipHash    String   // hashed IP address (for rate limiting/fraud detection)
+  userAgent String?  // user-agent string from browser (optional)
+  
+  // Admin tracking
+  status    String   @default("new") // "new", "read", "replied"
+  
+  @@index([email])
+  @@index([createdAt])
+  @@index([ipHash])
+  @@map("contact_submissions")
+}
